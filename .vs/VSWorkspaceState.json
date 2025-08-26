@@ -12,8 +12,10 @@
     ]
   },
   "ExpandedNodes": [
-    ""
+    "",
+    "\\include",
+    "\\src"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\include",
   "PreviewInSolutionExplorer": false
 }

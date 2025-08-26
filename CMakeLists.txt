@@ -1,7 +1,4 @@
-﻿# CMakeList.txt: проект CMake для chip8; включите исходный код и определения,
-# укажите здесь логику для конкретного проекта.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.8)
 
 # Включение горячей перезагрузки для компиляторов MSVC, если поддерживается.
 if (POLICY CMP0141)
@@ -12,7 +9,7 @@ endif()
 project ("chip8")
 
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (chip8 "chip8.cpp" "chip8.h")
+add_executable (chip8 "src/chip8.cpp" "chip8.h" "src/main.cpp" "include/chip8.h" "src/display.cpp" "include/display.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET chip8 PROPERTY CXX_STANDARD 20)
