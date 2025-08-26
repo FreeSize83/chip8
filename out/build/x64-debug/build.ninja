@@ -49,7 +49,7 @@ cmake_ninja_workdir = D$:\chip8\out\build\x64-debug\
 
 build cmake_object_order_depends_target_chip8: phony || .
 
-build CMakeFiles\chip8.dir\src\chip8.cpp.obj: CXX_COMPILER__chip8_unscanned_Debug D$:\chip8\src\chip8.cpp || cmake_object_order_depends_target_chip8
+build CMakeFiles\chip8.dir\src\Chip8.cpp.obj: CXX_COMPILER__chip8_unscanned_Debug D$:\chip8\src\Chip8.cpp || cmake_object_order_depends_target_chip8
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++20 -ZI
   OBJECT_DIR = CMakeFiles\chip8.dir
   OBJECT_FILE_DIR = CMakeFiles\chip8.dir\src
@@ -78,7 +78,7 @@ build CMakeFiles\chip8.dir\src\display.cpp.obj: CXX_COMPILER__chip8_unscanned_De
 #############################################
 # Link the executable chip8.exe
 
-build chip8.exe: CXX_EXECUTABLE_LINKER__chip8_Debug CMakeFiles\chip8.dir\src\chip8.cpp.obj CMakeFiles\chip8.dir\src\main.cpp.obj CMakeFiles\chip8.dir\src\display.cpp.obj
+build chip8.exe: CXX_EXECUTABLE_LINKER__chip8_Debug CMakeFiles\chip8.dir\src\Chip8.cpp.obj CMakeFiles\chip8.dir\src\main.cpp.obj CMakeFiles\chip8.dir\src\display.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -ZI
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

@@ -16,6 +16,6 @@
     "\\include",
     "\\src"
   ],
-  "SelectedNode": "\\include",
+  "SelectedNode": "\\src\\chip8.cpp",
   "PreviewInSolutionExplorer": false
 }

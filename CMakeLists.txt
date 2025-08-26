@@ -9,7 +9,7 @@ endif()
 project ("chip8")
 
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (chip8 "src/chip8.cpp" "chip8.h" "src/main.cpp" "include/chip8.h" "src/display.cpp" "include/display.h")
+add_executable (chip8 "src/Chip8.cpp" "include/Chip8.h" "src/main.cpp" "include/chip8.h" "src/display.cpp" "include/display.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET chip8 PROPERTY CXX_STANDARD 20)
