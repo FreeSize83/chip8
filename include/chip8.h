@@ -4,7 +4,7 @@ class Chip8 {
 public:
 	Chip8();
 	void reset();
-	void loadgame();
+	void loadGame(const char* filename);
 	void emulateCycle();
 	void updateTimers();
 
