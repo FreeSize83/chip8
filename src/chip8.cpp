@@ -4,7 +4,6 @@
 
 Chip8::Chip8() {
 	reset();
-	loadGame("game/pong.ch8");
 }
 
 void Chip8::reset() {
