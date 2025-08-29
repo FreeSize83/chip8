@@ -1,0 +1,3 @@
+# Visual Studio temporary files
+.vs/
+*.ipch
