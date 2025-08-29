@@ -22,6 +22,7 @@ void Chip8::reset() {
 		for (int i = 0; i < 16; i++) {
 			key[i] = 0;
 		}
+		
 
 		I = 0;
 		PC = 0x200;
