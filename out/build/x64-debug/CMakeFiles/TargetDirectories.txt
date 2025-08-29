@@ -1,3 +1,0 @@
-D:/chip8/out/build/x64-debug/CMakeFiles/chip8.dir
-D:/chip8/out/build/x64-debug/CMakeFiles/edit_cache.dir
-D:/chip8/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
