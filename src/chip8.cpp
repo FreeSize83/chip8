@@ -63,7 +63,7 @@ void Chip8::loadGame(const char* filename) {
 	if (size <= 0 || size > (4096 - 0x200)) return; // если файл слишком большой
 
 	file.seekg(0, std::ios::beg);
-	if (!file.read(reinterpret_cast <char*> (memory[0x200]), size)) return;
+	if (!file.read(reinterpret_cast <char*> (&memory[0x200]), size)) return;
 }
 
 void Chip8::emulateCycle() {
@@ -76,53 +76,85 @@ void Chip8::emulateCycle() {
 	uint8_t X = (opcode & 0x0F00) >> 8;
 	uint8_t Y = (opcode & 0x00F0) >> 4;
 
+
 	switch (first) {
 
-		case 0x0000:
-			switch (opcode)
-			{
-			case 0x00E0:
-				for (int i = 0; i < 64 * 32; i++)
-					display[i] = 0;
-				PC += 2;
-				break;
-			case 0x00EE:
-				PC = stack[--SP];
-				PC += 2;
-				break;
-			}
+	case 0x0000:
+		switch (opcode)
+		{
+		case 0x00E0:
+			for (int i = 0; i < 64 * 32; i++)
+				display[i] = 0;
+			PC += 2;
 			break;
+		case 0x00EE:
+			PC = stack[--SP];
+			PC += 2;
+			break;
+		}
+		break;
 
-		case 0x1000: 
-			PC = NNN;
-			break;
-	
-		case 0x2000: 
-			stack[SP++] = PC;
-			PC = NNN;
-			break;
-	
-		case 0x3000: 
-			PC += (V[X] == NN) ? 4 : 2;
-			break;
-	
-		case 0x6000:
-			V[X] = NN;
+	case 0x1000:
+		PC = NNN;
+		break;
+
+	case 0x2000:
+		stack[SP++] = PC;
+		PC = NNN;
+		break;
+
+	case 0x3000:
+		PC += (V[X] == NN) ? 4 : 2;
+		break;
+
+	case 0x6000:
+		V[X] = NN;
+		PC += 2;
+		break;
+
+	case 0x7000:
+		V[X] += NN;
+		PC += 2;
+		break;
+	case 0xA000:
+		I = NNN;
+		PC += 2;
+		break;
+	case 0xD000: {
+		const uint8_t x0 = V[X] & 63; // ширина 
+		const uint8_t y0 = V[Y] & 31; // высота
+
+		V[0xF] = 0;
+
+		if (I + N > 4096) {
 			PC += 2;
 			break;
-	
-		case 0x7000:
-			V[X] += NN;
-			PC += 2;
-			break;
-		case 0xA000:
-			I = NNN;
-			PC += 2;
-			break;
-		case 0xD000:
-			PC += 2;
-			break;
-		default:
-			PC += 2;
-			break;
+		}
+		for (uint8_t row = 0; row < N; ++row) {
+			const uint8_t sprite = memory[I + row];
+			const uint8_t yy = (y0 + row) & 31;
+
+
+			for (uint8_t bit = 0; bit < 8; ++bit) {
+				if (sprite & (0x80u >> bit)) {
+					const uint8_t xx = (x0 + bit) & 63;
+					const size_t idx = static_cast<size_t>(yy) * 64 + xx;
+
+					const uint8_t prev = display[idx];
+					const uint8_t next = prev ^ 1;
+					display[idx] = next;
+
+					if (prev == 1 && next == 0) {
+						V[0xF] = 1;
+					}
+				}
+			}
+		}
+		PC += 2;
+		break;
+	}
+	default:
+		PC += 2;
+		break;
+	}
 }
