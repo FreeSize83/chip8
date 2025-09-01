@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\157489efaaea8257a6e3ce4ab7659463\raylib-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\157489efaaea8257a6e3ce4ab7659463\raylib-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\157489efaaea8257a6e3ce4ab7659463\raylib-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\157489efaaea8257a6e3ce4ab7659463\raylib-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\157489efaaea8257a6e3ce4ab7659463\raylib-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\157489efaaea8257a6e3ce4ab7659463\raylib-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\157489efaaea8257a6e3ce4ab7659463\raylib-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\157489efaaea8257a6e3ce4ab7659463\raylib-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\9e2245a9cc6cc3f5763fb8a3db1c6488\raylib-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\384381cf8cb79f07b635194be0450012\raylib-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\chip8\build\_deps\raylib-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\chip8\build\_deps\raylib-subbuild\CMakeFiles\raylib-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E91B96CE-2EBB-304E-B92C-B0E877456102}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

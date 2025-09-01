@@ -1,10 +1,29 @@
 #include "../include/Chip8.h"
+#include "../include/RaylibDisplay.h"
+#include "raylib.h"
 #include <chrono>
 #include <thread>
 #include <iostream>
+#include <memory>
+#include <string>
+
 
 int main(int argc, char** argv) {
 	const char* romPath = (argc > 1) ? argv[1] : "game/pong.ch8";
+
+	int scale = 12;
+	if (argc > 2) {
+		try { scale = std::stoi(argv[2]); } catch(...){}
+		if (scale < 4) {
+			scale = 4;
+		}
+		if (scale > 32) {
+			scale = 32;
+		}
+	}
+
+	InitWindow(64 * scale, 32 * scale, "CHIP-8");
+	std::unique_ptr<IDisplay> display(CreateRaylibDisplay(scale));
 
 	Chip8 chip8;
 	chip8.reset();
@@ -47,5 +66,6 @@ int main(int argc, char** argv) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	
+	CloseWindow();
 	return 0;
 }

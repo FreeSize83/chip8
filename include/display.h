@@ -3,14 +3,16 @@
 #include <array>
 #include <cstdint>
 
-struct Framebyffer {
+struct FramebufferView {
+	const uint8_t* data;              
 	static constexpr int W = 64, H = 32;
-	std::array<uint8_t, W * H> pix{};
 };
 
 class IDisplay {
 public:
 	virtual ~IDisplay() = default;
+	virtual void present(const FramebufferView& fb, int scale) = 0;
 	virtual void clear() = 0;
-	virtual void present(const Framebyffer& fb, int scale) = 0;
 };
+IDisplay* CreateConsoleDisplay();
+IDisplay* CreateRaylibDisplay(int scale);
