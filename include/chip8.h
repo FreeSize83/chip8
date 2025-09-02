@@ -1,6 +1,27 @@
 #include <cstdint>
 
 class Chip8 {
+	static constexpr int MEM_SIZE = 4096;
+	static constexpr int FB_W = 64;
+	static constexpr int FB_H = 32;
+	static constexpr int STACK_SIZE = 16;
+	static constexpr uint16_t ROM_BASE = 0x200;
+
+	uint16_t stack[STACK_SIZE]{};
+	uint8_t SP = 0; // size стэка
+
+	inline bool push(uint16_t addr) {
+		if (SP >= STACK_SIZE) return false;
+		stack[SP++] = addr;
+		return true;
+	}
+
+	inline bool pop(uint16_t& out) {
+		if (SP == 0) return false;
+		out = stack[--SP];
+		return true;
+	}
+
 public:
 	Chip8();
 	void reset();

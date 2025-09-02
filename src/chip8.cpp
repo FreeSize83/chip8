@@ -88,8 +88,11 @@ void Chip8::emulateCycle() {
 			PC += 2;
 			break;
 		case 0x00EE:
-			PC = stack[--SP];
-			PC += 2;
+			if (SP == 0) {
+				PC += 2;
+				break;
+			}
+			PC = stack[--SP] + 2;
 			break;
 		}
 		break;
@@ -98,10 +101,15 @@ void Chip8::emulateCycle() {
 		PC = NNN;
 		break;
 
-	case 0x2000:
+	case 0x2000: {
+		if (SP >= STACK_SIZE) {
+			PC += 2;
+			break;
+		}
 		stack[SP++] = PC;
 		PC = NNN;
 		break;
+	}
 
 	case 0x3000:
 		PC += (V[X] == NN) ? 4 : 2;
