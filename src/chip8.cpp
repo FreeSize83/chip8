@@ -115,6 +115,21 @@ void Chip8::emulateCycle() {
 		PC += (V[X] == NN) ? 4 : 2;
 		break;
 
+	case 0x4000: {
+		PC += (V[X] != NN) ? 4 : 2;
+		break;
+	}
+
+	case 0x5000: {
+		if ((opcode & 0x000F) == 0x0000) {
+			PC += (V[X] == V[Y]) ? 4 : 2;
+		}
+		else {
+			PC += 2;
+		}
+		break;
+	}
+
 	case 0x6000:
 		V[X] = NN;
 		PC += 2;
@@ -124,6 +139,17 @@ void Chip8::emulateCycle() {
 		V[X] += NN;
 		PC += 2;
 		break;
+
+	case 0x9000: {
+		if ((opcode & 0x000F) == 0x0000) {
+			PC += (V[X] == V[Y]) ? 4 : 2;
+		}
+		else {
+			PC += 2;
+		}
+		break;
+	}
+
 	case 0xA000:
 		I = NNN;
 		PC += 2;
