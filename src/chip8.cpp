@@ -140,6 +140,81 @@ void Chip8::emulateCycle() {
 		PC += 2;
 		break;
 
+	case 0x8000: {
+		uint8_t& vx = V[X];
+		uint8_t& vy = V[Y];
+
+		switch (N) {
+		case 0x0:
+			vx = vy;
+			PC += 2;
+			break;
+
+		case 0x1:
+			vx |= vy;
+			V[0xF] = 0;
+			PC += 2;
+			break;
+
+		case 0x2:
+			vx &= vy;
+			V[0xF] = 0;
+			PC += 2;
+			break;
+
+		case 0x3:
+			vx ^= vy;
+			V[0xF] = 0;
+			PC += 2;
+			break;
+
+		case 0x4: {
+			uint16_t sum = static_cast<uint16_t>(vx) + static_cast<uint16_t>(vy);
+			V[0xF] = (sum > 0xFF) ? 1 : 0;
+			vx = static_cast<uint8_t>(sum & 0xFF);
+			PC += 2;
+			break;
+		}
+
+		case 0x5: {
+			V[0xF] = (vx >= vy) ? 1 : 0;
+			uint16_t diff = static_cast<uint16_t>(vx) - static_cast<uint16_t>(vy);
+			vx = static_cast<uint8_t>(diff & 0xFF);
+			PC += 2;
+			break;
+		}
+
+		case 0x6: {
+			uint8_t lsb = vx & 0x01;
+			vx >>= 1;
+			V[0xF] = lsb;
+			PC += 2;
+			break;
+		}
+
+		case 0x7: {
+			V[0xF] = (vy >= vx) ? 1 : 0;
+			uint16_t diff = static_cast<uint16_t>(vy) - static_cast<uint16_t>(vx);
+			vx = static_cast<uint8_t>(diff & 0xFF);
+			PC += 2;
+			break;
+		}
+
+		case 0xE: {
+			uint8_t msb = (vx & 0x80) ? 1 : 0;
+			vx = static_cast<uint8_t>((vx << 1) & 0xFF);
+			V[0xF] = msb;
+			PC += 2;
+			break;
+		}
+
+		default:
+			PC += 2;
+			break;
+		}
+
+	}
+
 	case 0x9000: {
 		if ((opcode & 0x000F) == 0x0000) {
 			PC += (V[X] == V[Y]) ? 4 : 2;
