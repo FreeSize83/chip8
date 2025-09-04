@@ -14,5 +14,5 @@ public:
 	virtual void present(const FramebufferView& fb, int scale) = 0;
 	virtual void clear() = 0;
 };
-IDisplay* CreateConsoleDisplay();
+
 IDisplay* CreateRaylibDisplay(int scale);

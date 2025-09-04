@@ -1,11 +1,36 @@
 #include "../include/Chip8.h"
 #include "../include/RaylibDisplay.h"
+#include "../include/display.h"
 #include "raylib.h"
 #include <chrono>
 #include <thread>
 #include <iostream>
 #include <memory>
 #include <string>
+
+extern IDisplay* CreateRaylibDisplay(int scale);
+
+void pollKeys_Raylib(Chip8& c8) { // клавиатура
+	c8.key[0x1] = IsKeyDown(KEY_ONE);
+	c8.key[0x2] = IsKeyDown(KEY_TWO);
+	c8.key[0x3] = IsKeyDown(KEY_THREE);
+	c8.key[0xC] = IsKeyDown(KEY_FOUR);
+
+	c8.key[0x4] = IsKeyDown(KEY_Q);
+	c8.key[0x5] = IsKeyDown(KEY_W);
+	c8.key[0x6] = IsKeyDown(KEY_E);
+	c8.key[0xD] = IsKeyDown(KEY_R);
+
+	c8.key[0x7] = IsKeyDown(KEY_A);
+	c8.key[0x8] = IsKeyDown(KEY_S);
+	c8.key[0x9] = IsKeyDown(KEY_D);
+	c8.key[0xE] = IsKeyDown(KEY_F);
+
+	c8.key[0xA] = IsKeyDown(KEY_Z);
+	c8.key[0x0] = IsKeyDown(KEY_X);
+	c8.key[0xB] = IsKeyDown(KEY_C);
+	c8.key[0xF] = IsKeyDown(KEY_V);
+}
 
 
 int main(int argc, char** argv) {
@@ -28,7 +53,7 @@ int main(int argc, char** argv) {
 	Chip8 chip8;
 	chip8.reset();
 	chip8.loadGame(romPath);
-
+	
 	double CPU_HZ = 600.0;
 	const double TIMER_HZ = 60.0;
 
@@ -48,6 +73,8 @@ int main(int argc, char** argv) {
 		prev = now;
 		if (dt > 0.25) dt = 0.25;
 
+		pollKeys_Raylib(chip8); // ввод
+
 		if (!paused) {
 			accCpu += dt;
 			while (accCpu >= CPU_DT) {
@@ -62,6 +89,11 @@ int main(int argc, char** argv) {
 		}
 		else {
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		}
+
+		if (chip8.consumeDirty()) { // рендер
+			FramebufferView fb{ chip8.framebufferData()};
+			display->present(fb, scale);
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}

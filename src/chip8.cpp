@@ -1,6 +1,7 @@
 ﻿#include "../include/Chip8.h"
 #include <fstream>
 #include <cstdint>
+#include "raylib.h"
 
 Chip8::Chip8() {
 	std::random_device rd;
@@ -70,6 +71,11 @@ void Chip8::loadGame(const char* filename) {
 
 	file.seekg(0, std::ios::beg);
 	if (!file.read(reinterpret_cast <char*> (&memory[0x200]), size)) return;
+}
+
+void Chip8::updateTimers() {
+	if (delayTimer > 0) --delayTimer;
+	if (soundTimer > 0) --soundTimer;
 }
 
 void Chip8::emulateCycle() {
@@ -280,6 +286,52 @@ void Chip8::emulateCycle() {
 		PC += 2;
 		break;
 	}
+
+	case 0xE000: {
+		switch (opcode & 0x00FF) {
+		case 0x009E: {
+			uint8_t k = V[X] & 0x0F;
+			PC += (key[k] ? 4 : 2);
+			break;
+		}
+		case 0x00A1: {
+			uint8_t k = V[X] & 0x0F;
+			PC += (!key[k] ? 4 : 2);
+			break;
+		}
+		default: // игнор опкодов
+			PC += 2;
+			break;
+		}
+		break;
+	}
+
+	case 0xF000: {
+		switch (opcode & 0x00FF) {
+		case 0x00F: {
+			int pressed = -1;
+			for (int i = 0; i < 16; ++i) {
+				if (key[i]) {
+					pressed = i;
+					break;
+				}
+			}
+			if (pressed < 0) {
+				return;
+			}
+			else {
+				V[X] = static_cast<uint8_t>(pressed);
+				PC += 2;
+			}
+			break;
+		}
+		default:
+			PC += 2;
+			break;
+		}
+		break;
+	}
+
 	default:
 		PC += 2;
 		break;
