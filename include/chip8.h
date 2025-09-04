@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <random>
 
 class Chip8 {
 	static constexpr int MEM_SIZE = 4096;
@@ -24,12 +25,18 @@ class Chip8 {
 
 public:
 	Chip8();
+	void seed(uint32_t s);
 	void reset();
 	void loadGame(const char* filename);
 	void emulateCycle();
 	void updateTimers();
-
+	
 private:
+	std::mt19937 rng;
+	std::uniform_int_distribution<int> dist{ 0, 255 };
+	inline uint8_t rand8() {
+		return static_cast<uint8_t>(dist(rng));
+	}
 	uint8_t memory[4096];
 	uint8_t V[16];
 	uint16_t I;

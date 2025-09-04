@@ -3,7 +3,13 @@
 #include <cstdint>
 
 Chip8::Chip8() {
+	std::random_device rd;
+	rng.seed(rd());
 	reset();
+}
+
+void Chip8::seed(uint32_t s) {
+	rng.seed(s);
 }
 
 void Chip8::reset() {
@@ -229,6 +235,18 @@ void Chip8::emulateCycle() {
 		I = NNN;
 		PC += 2;
 		break;
+
+	case 0xB000: {
+		PC = (NNN + V[0]) & 0x0FFF;
+		break;
+	}
+
+	case 0xC000: {
+		V[X] = static_cast<uint8_t>(rand8() & NN);
+		PC += 2;
+		break;
+	}
+
 	case 0xD000: {
 		const uint8_t x0 = V[X] & 63; // ширина 
 		const uint8_t y0 = V[Y] & 31; // высота
