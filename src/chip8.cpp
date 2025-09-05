@@ -1,7 +1,6 @@
 ﻿#include "../include/Chip8.h"
 #include <fstream>
 #include <cstdint>
-#include "raylib.h"
 
 Chip8::Chip8() {
 	std::random_device rd;
@@ -14,30 +13,19 @@ void Chip8::seed(uint32_t s) {
 }
 
 void Chip8::reset() {
-		for (int i = 0; i < 4096; i++){
-			memory[i] = 0;
-		}
-		for (int i = 0; i < 16; i++) {
-			V[i] = 0;
-		}
-		for (int i = 0; i < 16; i++) {
-			stack[i] = 0;
-		}
-		for (int i = 0; i < 2048; i++) {
-			display[i] = 0;
-		}
-		for (int i = 0; i < 16; i++) {
-			key[i] = 0;
-		}
-		
+		std::memset(memory, 0, sizeof(memory));
+		std::memset(V, 0, sizeof(V));
+		std::memset(stack, 0, sizeof(stack));
+		std::memset(display, 0, sizeof(display));
+		std::memset(key, 0, sizeof(key));
 
 		I = 0;
-		PC = 0x200;
+		PC = ROM_BASE;
 		SP = 0;
 		delayTimer = 0;
 		soundTimer = 0;
 		
-		const uint8_t chip8_fontset[80] = {
+		const uint8_t font[80] = {
 		 0xF0, 0x90, 0x90, 0x90, 0xF0, 
 		 0x20, 0x60, 0x20, 0x20, 0x70, 
 		 0xF0, 0x10, 0xF0, 0x80, 0xF0, 
@@ -56,9 +44,7 @@ void Chip8::reset() {
 		 0xF0, 0x80, 0xF0, 0x80, 0x80  
 		};
 
-		for (int i = 0; i < 80; i++) {
-			memory[0x50 + i] = chip8_fontset[i];
-		}
+		std::memcpy(&memory[0x50], font, sizeof(font));
 
 }
 
@@ -79,6 +65,7 @@ void Chip8::updateTimers() {
 }
 
 void Chip8::emulateCycle() {
+	if (PC > MEM_SIZE - 2) return;
 	uint16_t opcode = memory[PC] << 8 | memory[PC + 1];
 
 	uint16_t first = opcode & 0xF000;
@@ -95,8 +82,8 @@ void Chip8::emulateCycle() {
 		switch (opcode)
 		{
 		case 0x00E0:
-			for (int i = 0; i < 64 * 32; i++)
-				display[i] = 0;
+			std::memset(display, 0, sizeof(display));
+			dirty = true;
 			PC += 2;
 			break;
 		case 0x00EE:
@@ -104,7 +91,10 @@ void Chip8::emulateCycle() {
 				PC += 2;
 				break;
 			}
-			PC = stack[--SP] + 2;
+			PC = stack[--SP] + 2; // возврат на следующую
+			break;
+		default:
+			PC += 2;
 			break;
 		}
 		break;
@@ -133,7 +123,7 @@ void Chip8::emulateCycle() {
 	}
 
 	case 0x5000: {
-		if ((opcode & 0x000F) == 0x0000) {
+		if ((opcode & 0x000F) == 0) {
 			PC += (V[X] == V[Y]) ? 4 : 2;
 		}
 		else {
@@ -148,7 +138,7 @@ void Chip8::emulateCycle() {
 		break;
 
 	case 0x7000:
-		V[X] += NN;
+		V[X] += static_cast<uint8_t>(V[X] + NN);
 		PC += 2;
 		break;
 
@@ -224,18 +214,18 @@ void Chip8::emulateCycle() {
 			PC += 2;
 			break;
 		}
-
+	
 	}
 
-	case 0x9000: {
-		if ((opcode & 0x000F) == 0x0000) {
+	case 0x9000: 
+		if ((opcode & 0x000F) == 0) {
 			PC += (V[X] == V[Y]) ? 4 : 2;
 		}
 		else {
 			PC += 2;
 		}
 		break;
-	}
+	
 
 	case 0xA000:
 		I = NNN;
@@ -259,13 +249,15 @@ void Chip8::emulateCycle() {
 
 		V[0xF] = 0;
 
-		if (I + N > 4096) {
+		if (I > MEM_SIZE - N) {
 			PC += 2;
 			break;
 		}
 		for (uint8_t row = 0; row < N; ++row) {
-			const uint8_t sprite = memory[I + row];
-			const uint8_t yy = (y0 + row) & 31;
+			uint8_t sprite = memory[I + row];
+			uint8_t yy = (y0 + row) & 31;
+
+			if (!sprite) continue;
 
 
 			for (uint8_t bit = 0; bit < 8; ++bit) {
@@ -283,6 +275,7 @@ void Chip8::emulateCycle() {
 				}
 			}
 		}
+		dirty = true;
 		PC += 2;
 		break;
 	}
@@ -308,7 +301,50 @@ void Chip8::emulateCycle() {
 
 	case 0xF000: {
 		switch (opcode & 0x00FF) {
-		case 0x00F: {
+		case 0x0007:
+			V[X] = delayTimer;
+			PC += 2;
+			break;
+
+		case 0x0015:
+			delayTimer = V[X];
+			PC += 2;
+			break;
+
+		case 0x0018:
+			soundTimer = V[X];
+			PC += 2;
+			break;
+
+		case 0x001E: {
+			uint16_t sum = I + V[X];
+			V[0xF] = (sum > 0x0FFF) ? 1 : 0;
+			I = sum & 0x0FFF;
+			PC += 2;
+			break;
+		}
+
+		case 0x0033: {
+			uint8_t v = V[X];
+			memory[I] = v / 100;
+			memory[I + 1] = (v / 10) % 10;
+			memory[I + 2] = v % 10;
+			PC += 2;
+			break;
+		}
+
+		case 0x0055: {
+			for (uint8_t r = 0; r <= X; ++r) memory[I + r] = V[r];
+			PC += 2;
+			break;
+		}
+
+		case 0x0065: {
+			for (uint8_t r = 0; r <= X; ++r) V[r] = memory[I + r];
+			PC += 2;
+			break;
+		}
+		case 0x000A: {
 			int pressed = -1;
 			for (int i = 0; i < 16; ++i) {
 				if (key[i]) {

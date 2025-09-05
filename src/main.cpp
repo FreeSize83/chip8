@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
 	bool running = true;
 	bool paused = false;
 
-	while (running) { // Главный цикл
+	while (!WindowShouldClose()) { // Главный цикл
 		auto now = clock::now();
 		double dt = std::chrono::duration<double>(now - prev).count();
 		prev = now;
