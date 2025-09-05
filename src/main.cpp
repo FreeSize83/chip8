@@ -7,8 +7,54 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <cmath>
 
 extern IDisplay* CreateRaylibDisplay(int scale);
+
+class Beeper {
+	AudioStream stream{};
+	bool initialized = false;
+	float phase = 0.f;
+	const int sampleRate = 44100;
+	const float freq = 440.0f;
+
+public:
+	Beeper() {
+		InitAudioDevice();
+		stream = LoadAudioStream(sampleRate, 16, 1);
+		SetAudioStreamVolume(stream, 0.25f);
+		initialized = true;
+	}
+	~Beeper() {
+		if (initialized) {
+			UnloadAudioStream(stream);
+			CloseAudioDevice();
+		}
+	}
+	void update(bool on) {
+		if (!initialized) return;
+
+		if (on) {
+			if (!IsAudioStreamPlaying(stream)) PlayAudioStream(stream);
+
+			const int SAMPLES = 512;
+			static short buf[SAMPLES];
+
+			while (IsAudioStreamProcessed(stream)) {
+				for (int i = 0; i < SAMPLES; ++i) {
+					float s = std::sinf(2.0f * 3.1415926535f * freq * phase);
+					buf[i] = static_cast<short>(s * 3000);
+					phase += 1.0f / sampleRate;
+					if (phase >= 1.0f) phase -= 1.0f;
+				}
+				UpdateAudioStream(stream, buf, SAMPLES);
+			}
+		} 
+		else {
+			if (IsAudioStreamPlaying(stream)) StopAudioStream(stream);
+		}
+	}
+};
 
 void pollKeys_Raylib(Chip8& c8) { // клавиатура
 	c8.key[0x1] = IsKeyDown(KEY_ONE);
@@ -49,6 +95,8 @@ int main(int argc, char** argv) {
 
 	InitWindow(64 * scale, 32 * scale, "CHIP-8");
 	SetTargetFPS(60);
+
+	Beeper beep;
 	std::unique_ptr<IDisplay> display(CreateRaylibDisplay(scale));
 
 	Chip8 chip8;
@@ -92,12 +140,12 @@ int main(int argc, char** argv) {
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		}
 
+		beep.update(chip8.soundOn());
+
 		if (chip8.consumeDirty()) { // рендер
 			FramebufferView fb{ chip8.framebufferData() };
 			display->present(fb, scale);                   
-			chip8.consumeDirty();
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	
 	CloseWindow();

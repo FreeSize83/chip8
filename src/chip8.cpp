@@ -315,7 +315,7 @@ void Chip8::emulateCycle() {
 			soundTimer = V[X];
 			PC += 2;
 			break;
-
+			
 		case 0x001E: {
 			uint16_t sum = I + V[X];
 			V[0xF] = (sum > 0x0FFF) ? 1 : 0;

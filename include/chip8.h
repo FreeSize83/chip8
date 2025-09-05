@@ -14,7 +14,10 @@ public:
 	void reset();
 	void loadGame(const char* filename);
 	void emulateCycle();
-	void updateTimers();
+	void updateTimers(); // 60 √ц
+	bool soundOn() const {
+		return soundTimer > 0; // дл€ звука в main
+	}
 
 	uint8_t key[16]; // клавиатура 
 
