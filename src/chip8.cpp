@@ -214,9 +214,9 @@ void Chip8::emulateCycle() {
 			PC += 2;
 			break;
 		}
-	
-	}
 
+		break;
+	}
 	case 0x9000: 
 		if ((opcode & 0x000F) == 0) {
 			PC += (V[X] == V[Y]) ? 4 : 2;

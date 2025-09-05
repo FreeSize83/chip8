@@ -48,6 +48,7 @@ int main(int argc, char** argv) {
 	}
 
 	InitWindow(64 * scale, 32 * scale, "CHIP-8");
+	SetTargetFPS(60);
 	std::unique_ptr<IDisplay> display(CreateRaylibDisplay(scale));
 
 	Chip8 chip8;
@@ -56,7 +57,7 @@ int main(int argc, char** argv) {
 	
 	double CPU_HZ = 600.0;
 	const double TIMER_HZ = 60.0;
-
+	
 	using clock = std::chrono::steady_clock;
 	auto prev = clock::now();
 	double accCpu = 0.0;
@@ -92,8 +93,9 @@ int main(int argc, char** argv) {
 		}
 
 		if (chip8.consumeDirty()) { // рендер
-			FramebufferView fb{ chip8.framebufferData()};
-			display->present(fb, scale);
+			FramebufferView fb{ chip8.framebufferData() };
+			display->present(fb, scale);                   
+			chip8.consumeDirty();
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
