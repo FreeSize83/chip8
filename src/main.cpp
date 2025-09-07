@@ -79,6 +79,63 @@ void pollKeys_Raylib(Chip8& c8) { // клавиатура
 }
 
 
+struct AppConfig {
+	std::string romPath = "game/pong.ch8";
+		int scale = 12;
+		double cpuHz = 600.00;
+
+};
+
+static void printUsage(const char* exe) {
+	std::cout <<
+		"Usage:\n"
+		"  " << exe << " [--rom <path>] [--scale <4..32>] [--cpu-hz <60..2000>]\n"
+		"  " << exe << " <rom>\n\n"
+		"Examples:\n"
+		"  " << exe << " --rom game/ibm_logo.ch8 --scale 14 --cpu-hz 700\n"
+		"  " << exe << " game/pong.ch8\n";
+}
+
+static AppConfig parseArgs(int argc, char** argv) {
+	AppConfig cfg;
+	for (int i = 1; i < argc; ++i) {
+		std::string a = argv[i];
+		if (a == "--help" || a == "--h") {
+			printUsage(argv[0]);
+			std::exit(0);
+		}
+		else if (a == "--rom" && i + 1 < argc) {
+			cfg.romPath = argv[++i];
+		}
+		else if (a == "--scale" && i + 1 < argc) {
+			try {
+				cfg.scale = std::stoi(argv[++i]);
+			}
+			catch (...){}
+		}
+		else if (a == "--cpu-hz" && i + 1 < argc) {
+			try {
+				cfg.cpuHz = std::stod(argv[++i]);
+			}
+			catch (...){}
+		}
+		else if (!a.empty() && a[0] != '-') {
+			cfg.romPath = a;
+		}
+		else {
+			std::cerr << "Unknown option: " << a << "\n";
+			printUsage(argv[0]);
+			std::exit(1);
+		}
+	}
+	if (cfg.scale < 4) cfg.scale = 4;
+	if (cfg.scale > 32) cfg.scale = 32;
+	if (cfg.cpuHz < 60.0) cfg.cpuHz = 60.0;
+	if (cfg.cpuHz > 5000.0) cfg.cpuHz = 5000.0;
+	return cfg;
+}
+
+
 int main(int argc, char** argv) {
 	const char* romPath = (argc > 1) ? argv[1] : "game/pong.ch8";
 
@@ -93,6 +150,8 @@ int main(int argc, char** argv) {
 		}
 	}
 
+	AppConfig cfg = parseArgs(argc, argv);
+
 	InitWindow(64 * scale, 32 * scale, "CHIP-8");
 	SetTargetFPS(60);
 
@@ -105,7 +164,9 @@ int main(int argc, char** argv) {
 	
 	double CPU_HZ = 600.0;
 	const double TIMER_HZ = 60.0;
-	
+
+	const double CPU_HZ = cfg.cpuHz;
+	const double TIMER_GZ = 60.0;
 	using clock = std::chrono::steady_clock;
 	auto prev = clock::now();
 	double accCpu = 0.0;
@@ -123,6 +184,19 @@ int main(int argc, char** argv) {
 		if (dt > 0.25) dt = 0.25;
 
 		pollKeys_Raylib(chip8); // ввод
+
+		if (IsKeyPressed(KEY_P)) {
+			paused = !paused;
+			std::cout << (paused ? "[paused]\n" : "[resume]\n");
+		}
+
+		if (IsKeyPressed(KEY_R)) {
+			chip8.reset();
+			chip8.loadGame(cfg.romPath.c_str());
+			std::cout << "[reset]\n";
+		}
+
+		if (IsKeyPressed(KEY_ESCAPE)) break;
 
 		if (!paused) {
 			accCpu += dt;
