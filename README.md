@@ -2,7 +2,7 @@
 
 Эмулятор CHIP-8 для курсовой работы. Дисциплина разработки: Объектно-ориентированное программирование.
 
-![screenshot](D:/chip8/out/build/x64-debug/screenshot000.png)
+![screenshot](docs/screenshot.png)
 
 ## Возможности
 - CPU (~600 Гц), таймеры 60 Гц.
