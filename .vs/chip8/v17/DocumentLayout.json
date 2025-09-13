@@ -105,7 +105,7 @@
               "RelativeDocumentMoniker": "README.md",
               "ToolTip": "D:\\chip8\\README.md",
               "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2025-09-13T11:38:13.657Z",
               "EditorCaption": ""
@@ -132,8 +132,7 @@
               "RelativeToolTip": ".vs\\launch.vs.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-04T22:26:15.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-04T22:26:15.674Z"
             },
             {
               "$type": "Document",

@@ -105,7 +105,7 @@
               "RelativeDocumentMoniker": "README.md",
               "ToolTip": "D:\\chip8\\README.md",
               "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAcwBUAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2025-09-13T11:38:13.657Z",
               "EditorCaption": ""
@@ -229,8 +229,7 @@
               "RelativeToolTip": "CMakeLists.txt",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-08-26T23:14:06.279Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T23:14:06.279Z"
             },
             {
               "$type": "Document",
