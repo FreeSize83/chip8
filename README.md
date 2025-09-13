@@ -2,7 +2,7 @@
 
 Эмулятор CHIP-8 для курсовой работы. Дисциплина разработки: структура кода, паттерны, тайминги, история коммитов.
 
-![screenshot](D:\chip8\out\build\x64-debug\screenshot000.png)
+![screenshot](D:/chip8/out/build/x64-debug/screenshot000.png)
 
 ## Возможности
 - CPU (~600 Гц), таймеры 60 Гц.
