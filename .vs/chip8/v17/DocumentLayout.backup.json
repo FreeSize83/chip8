@@ -87,7 +87,8 @@
               "RelativeToolTip": ".vs\\launch.vs.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-04T22:26:15.674Z"
+              "WhenOpened": "2025-09-04T22:26:15.674Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -181,7 +182,7 @@
               "RelativeDocumentMoniker": "src\\main.cpp",
               "ToolTip": "D:\\chip8\\src\\main.cpp",
               "RelativeToolTip": "src\\main.cpp",
-              "ViewState": "AgIAAH0AAAAAAAAAAADwv40AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAAMYAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-26T23:17:27.592Z",
               "EditorCaption": ""

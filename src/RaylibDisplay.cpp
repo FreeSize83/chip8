@@ -6,13 +6,13 @@ RaylibDisplay::RaylibDisplay(int scale) : m_scale(scale) {
 }
 
 RaylibDisplay::~RaylibDisplay() {
-
+	if (IsKeyPressed(KEY_F12)) TakeScreenshot("docs/screenshot.png");
 }
 
 void RaylibDisplay::clear() {
 	BeginDrawing();
 	ClearBackground(BLACK);
-	EndDrawing();
+	EndDrawing(); 
 }
 
 void RaylibDisplay::present(const FramebufferView& fb, int scale) {

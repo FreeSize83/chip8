@@ -14,6 +14,19 @@ add_executable(chip8
   include/RaylibDisplay.h
 )
 
+file(GLOB_RECURSE ALL_CXX_SOURCE_FILES
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h"
+)
+
+find_program(CLANG_FORMAT_EXE NAMES clang-format)
+if (CLANG_FORMAT_EXE)
+  add_custom_target(format
+    COMMAND ${CLANG_FORMAT_EXE} -i ${ALL_CXX_SOURCE_FILES}
+    COMMENT "Running clang-format"
+  )
+endif()
+
 target_include_directories(chip8 PRIVATE include)
 
 #raylib
@@ -30,4 +43,6 @@ target_link_libraries(chip8 PRIVATE raylib)
 # консольное окно на Release
 if (MSVC)
   target_compile_definitions(chip8 PRIVATE _CRT_SECURE_NO_WARNINGS)
+else()
+	target_compile_options(chip8 PRIVATE -Wall -Wextra -Wpedantic)
 endif()
