@@ -20,14 +20,14 @@
    cd chip8
    cmake -S . -B out/build/x64-debug -DCMAKE_BUILD_TYPE=Debug
    cmake --build out/build/x64-debug --config Debug
-````
 
-3. Запуск:
 
-   ```powershell
-   .\out\build\x64-debug\chip8.exe --rom game\pong.ch8 --scale 12 --cpu-hz 600
+## 3. Запуск:
+
+    powershell
+   .\chip8.exe (Resolve-Path ..\..\..\game\pong.ch8) 12
    
-- ## Управление и раскладка
+## Управление и раскладка
 CHIP-8:   1  2  3  C       4  5  6  D       7  8  9  E       A  0  B  F
 Клавиши:  1  2  3  4       Q  W  E  R       A  S  D  F       Z  X  C  V
 Горячие:  P — пауза, R — reset, Esc — выход

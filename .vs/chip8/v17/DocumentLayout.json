@@ -105,7 +105,7 @@
               "RelativeDocumentMoniker": "README.md",
               "ToolTip": "D:\\chip8\\README.md",
               "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2025-09-13T11:38:13.657Z",
               "EditorCaption": ""
@@ -120,8 +120,7 @@
               "RelativeToolTip": "include\\RaylibDisplay.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-09-01T17:43:57.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T17:43:57.469Z"
             },
             {
               "$type": "Document",
@@ -168,7 +167,7 @@
               "RelativeDocumentMoniker": "src\\RaylibDisplay.cpp",
               "ToolTip": "D:\\chip8\\src\\RaylibDisplay.cpp",
               "RelativeToolTip": "src\\RaylibDisplay.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-02T17:14:13.936Z",
               "EditorCaption": ""
