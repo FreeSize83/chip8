@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\chip8\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\chip8\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\chip8\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\chip8\\.clang-format||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.clang-format||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\chip8\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\chip8\\src\\RaylibDisplay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -71,7 +71,7 @@
         },
         {
           "DockedHeight": 94,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -87,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": ".clang-format",
               "DocumentMoniker": "D:\\chip8\\.clang-format",
               "RelativeDocumentMoniker": ".clang-format",
@@ -95,18 +95,17 @@
               "RelativeToolTip": ".clang-format",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-09-13T11:51:36.566Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T11:51:36.566Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "README.md",
               "DocumentMoniker": "D:\\chip8\\README.md",
               "RelativeDocumentMoniker": "README.md",
               "ToolTip": "D:\\chip8\\README.md",
               "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAcwBUAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2025-09-13T11:38:13.657Z",
               "EditorCaption": ""
@@ -121,8 +120,7 @@
               "RelativeToolTip": "include\\RaylibDisplay.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-09-01T17:43:57.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T17:43:57.469Z"
             },
             {
               "$type": "Document",
@@ -147,8 +145,7 @@
               "RelativeToolTip": "src\\chip8.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0BAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-26T23:14:04.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T23:14:04.083Z"
             },
             {
               "$type": "Document",
@@ -160,8 +157,7 @@
               "RelativeToolTip": "include\\Chip8.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-26T23:18:16.069Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T23:18:16.069Z"
             },
             {
               "$type": "Document",
@@ -173,8 +169,7 @@
               "RelativeToolTip": "src\\RaylibDisplay.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-09-02T17:14:13.936Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-02T17:14:13.936Z"
             },
             {
               "$type": "Document",
@@ -186,8 +181,7 @@
               "RelativeToolTip": "include\\display.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-26T23:18:41.611Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T23:18:41.611Z"
             },
             {
               "$type": "Document",
@@ -199,12 +193,11 @@
               "RelativeToolTip": "src\\display.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-26T23:18:29.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T23:18:29.622Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CMakePresets.json",
               "DocumentMoniker": "D:\\chip8\\CMakePresets.json",
               "RelativeDocumentMoniker": "CMakePresets.json",
@@ -212,8 +205,7 @@
               "RelativeToolTip": "CMakePresets.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-26T23:17:33.384Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T23:17:33.384Z"
             },
             {
               "$type": "Document",
@@ -225,12 +217,11 @@
               "RelativeToolTip": "src\\main.cpp",
               "ViewState": "AgIAAMMAAAAAAAAAAAAAAMYAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-26T23:17:27.592Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T23:17:27.592Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CMakeLists.txt",
               "DocumentMoniker": "D:\\chip8\\CMakeLists.txt",
               "RelativeDocumentMoniker": "CMakeLists.txt",
