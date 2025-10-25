@@ -12,7 +12,7 @@ add_executable(chip8
   include/Chip8.h
   include/display.h
   include/RaylibDisplay.h
-)
+ "include/Memory.h" "src/Memory.cpp" "include/Registers.h" "include/Stack.h" "include/Framebuffer.h" "include/Keypad.h" "include/RomLoader.h" "src/RomLoader.cpp" "include/OpcodeExecutor.h" "src/OpcodeExecutor.cpp" "include/ConsoleDisplay.h" "src/ConsoleDisplay.cpp")
 
 file(GLOB_RECURSE ALL_CXX_SOURCE_FILES
   "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"

@@ -13,10 +13,11 @@
   },
   "ExpandedNodes": [
     "",
-    "\\game",
+    "\\build",
+    "\\build\\_deps\\raylib-subbuild",
     "\\include",
     "\\src"
   ],
-  "SelectedNode": "\\src\\chip8.cpp",
+  "SelectedNode": "\\src\\main.cpp",
   "PreviewInSolutionExplorer": false
 }
